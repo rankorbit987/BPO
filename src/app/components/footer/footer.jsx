@@ -67,7 +67,7 @@ export default function Footer() {
             <li><Link href="/" className="hover:text-[#c93c3c]">Home</Link></li>
             <li><Link href="/aboutus" className="hover:text-[#c93c3c]">About&nbsp;Us</Link></li>
             <li><Link href="/joinus" className="hover:text-[#c93c3c]">Careers</Link></li>
-            <li><Link href="/BlogPage" className="hover:text-[#c93c3c]">Blogs</Link></li>
+            <li><Link href="/blog" className="hover:text-[#c93c3c]">Blogs</Link></li>
           </ul>
         </div>
 
