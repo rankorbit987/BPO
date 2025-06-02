@@ -105,14 +105,29 @@ export default function NavigationBar() {
     setMobileServicesOpen(false);
     setMobileSolutionsOpen(false);
   };
+  const handleLogoClick = () => {
+    if (triggerLoading) {
+      triggerLoading();
+    }
+  };
 
   return (
     <div className="z-50 font-montserrat fixed lg:top-3 left-0 right-0 shadow-md lg:mx-20 xl-mx-24 ">
       {/* Top Bar */}
       <div className="container lg:rounded-2xl px-4 sm:px-6 md:px-10 lg:px-10 flex items-center justify-between bg-gradient-to-r from-[#0F172A] via-[#1E293B] to-[#0F172A] text-white py-3">
-        <Link href="/" className="flex items-center">
-          <Image src={LogoImg} alt="Logo" width={120} height={44} />
-        </Link>
+        <Link 
+              href="/" 
+              className="flex items-center"
+              onClick={handleLogoClick}
+            >
+              <Image 
+                src={LogoImg} 
+                alt="Logo" 
+                width={120} 
+                height={44} 
+                className="cursor-pointer"
+              />
+            </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-6">

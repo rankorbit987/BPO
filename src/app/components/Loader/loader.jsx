@@ -23,7 +23,7 @@ export default function Loader() {
         }
       `}</style>
 
-      <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-gradient-to-r from-[#0F172A] via-[#1E293B] to-[#0F172A]">
+      <div className="fixed inset-0 z-[9999] flex items-center justify-center backdrop-blur-md">
         <div
           className="text-3xl md:text-4xl lg:text-6xl font-bold dm-serif-display-regular tracking-widest text-transparent bg-clip-text leading-none p-4 overflow-visible"
           style={{
