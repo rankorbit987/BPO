@@ -44,15 +44,7 @@ export default function WhyUs() {
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          let i = 0;
-          const interval = setInterval(() => {
-            setVisibleCards((prev) => {
-              if (prev < reasons.length) return prev + 1;
-              clearInterval(interval);
-              return prev;
-            });
-            i++;
-          }, 150);
+          setVisibleCards(reasons.length); // Show all cards at once
         }
       },
       { threshold: 0.3 }
@@ -86,10 +78,7 @@ export default function WhyUs() {
                     ? 'animate-fade-in-up'
                     : 'opacity-0 translate-y-8'
                 }`}
-              style={{
-                animationDelay: `${index * 120}ms`,
-                animationFillMode: 'forwards',
-              }}
+              style={{ animationFillMode: 'forwards' }}
             >
               <div className="flex items-center gap-4 mb-4">
                 <div className="p-2 bg-[#1E293B] rounded-full border border-[#C93C3C]/30">
@@ -112,7 +101,7 @@ export default function WhyUs() {
         @keyframes fade-in-up {
           0% {
             opacity: 0;
-            transform: translateY(20px) scale(0.95);
+            transform: translateY(30px) scale(0.9);
           }
           100% {
             opacity: 1;
