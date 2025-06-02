@@ -1,9 +1,10 @@
-// No need for "use client" here since metadata is for server-side
+// app/layout.js (Server Component)
 import "./globals.css";
 import NavigationBar from "./components/navbar/navbar";
 import Footer from "./components/footer/footer";
-import { LoaderProvider } from "@/app/context/LoaderContext";
 import GlobalBackground from "./components/GlobalBackground/background";
+import LoaderWrapper from "./components/Loader/loaderWraper";
+
 
 export const metadata = {
   title: "BPO Brigade",
@@ -14,16 +15,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="antialiased">
-        
-
-        <LoaderProvider>
-          <GlobalBackground /> {/* Background stays behind everything */}
-          <div className="relative z-10">
-            <NavigationBar />
-            {children}
-            <Footer className="z-50" />
-          </div>
-        </LoaderProvider>
+        <GlobalBackground />
+        <LoaderWrapper>
+          <NavigationBar />
+          {children}
+          <Footer />
+        </LoaderWrapper>
       </body>
     </html>
   );
