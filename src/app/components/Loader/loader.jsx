@@ -33,7 +33,7 @@ export default function Loader() {
             backgroundRepeat: "no-repeat",
             WebkitBackgroundClip: "text",
             backgroundClip: "text",
-            animation: "animateBackground 4.5s ease-in-out infinite",
+            animation: "animateBackground 2s ease-in-out infinite", // faster animation
             textShadow: "0 0 10px rgba(255, 255, 255, 0.1)",
           }}
         >
