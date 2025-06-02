@@ -1,21 +1,29 @@
-// app/components/ClientWrapper.jsx
 "use client";
 
-import { useEffect, useState, Children } from "react";
+import { useEffect, useState } from "react";
 import Loader from "./loader";
 
 export default function LoaderWrapper({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1500);
-    return () => clearTimeout(timer);
+    const handleLoad = () => setLoading(false);
+
+    // If the document is already loaded
+    if (document.readyState === "complete") {
+      handleLoad();
+    } else {
+      // Otherwise, wait for it
+      window.addEventListener("load", handleLoad);
+    }
+
+    return () => window.removeEventListener("load", handleLoad);
   }, []);
 
   return (
     <>
       {loading && <Loader />}
-      <div className="relative z-10">{children}</div>
+      {!loading && <div className="relative z-10">{children}</div>}
     </>
   );
 }
