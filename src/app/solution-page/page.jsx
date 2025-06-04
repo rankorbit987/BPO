@@ -1,84 +1,72 @@
-'use client';
-import Link from 'next/link';
-import * as Icons from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
-import ContactForm from '../components/contact-form/contactform';
+"use client";
+import Link from "next/link";
+import * as Icons from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import ContactForm from "../components/contact-form/contactform";
 
 // Color scheme
 const colors = {
-  primary: '#C93C3C',
-  secondary: '#1E293B',
-  accent: '#E74C3C',
-  lightBg: '#F5F7FA',
-  darkText: '#333333',
-  lightText: '#FFFFFF'
+  primary: "#C93C3C",
+  secondary: "#1E293B",
+  accent: "#E74C3C",
+  lightBg: "#F5F7FA",
+  darkText: "#333333",
+  lightText: "#FFFFFF",
 };
 
 /* ---------- STATIC DATA ---------- */
 const solutions = {
-  'Business Process Automation': {
-    path: 'business-process-automation',
+  "Business Process Automation": {
+    path: "business-process-automation",
     items: [
-      'Workflow Automation (Zapier, Monday.com, Power Automate)',
-      'Task Management & Orchestration'
-    ]
+      "Workflow Automation (Zapier, Monday.com, Power Automate)",
+      "Task Management & Orchestration",
+    ],
   },
-  'AI & Machine Learning': {
-    path: 'ai-and-machine-learning',
-    items: [
-      'Chatbots & Intelligent Ticket Routing',
-      'Predictive Analytics'
-    ]
+  "AI & Machine Learning": {
+    path: "ai-and-machine-learning",
+    items: ["Chatbots & Intelligent Ticket Routing", "Predictive Analytics"],
   },
-  'Communication & Collaboration Tools': {
-    path: 'communication-&-collaboration-tools',
-    items: [
-      'Microsoft Teams',
-      'Slack',
-      'Zoom'
-    ]
+  "Communication & Collaboration Tools": {
+    path: "communication-&-collaboration-tools",
+    items: ["Microsoft Teams", "Slack", "Zoom"],
   },
-  'Data & Business Intelligence': {
-    path: 'data-business-intelligence',
-    items: [
-      'Power BI',
-      'Looker Studio',
-      'Tableau'
-    ]
+  "Data & Business Intelligence": {
+    path: "data-business-intelligence",
+    items: ["Power BI", "Looker Studio", "Tableau"],
   },
-  'CRM & Marketing Automation': {
-    path: 'crm-marketing-automation',
-    items: [
-      'Salesforce',
-      'HubSpot'
-    ]
+  "CRM & Marketing Automation": {
+    path: "crm-marketing-automation",
+    items: ["Salesforce", "HubSpot"],
   },
-  'Cloud & Infrastructure': {
-    path: 'cloud-infrastructure',
+  "Cloud & Infrastructure": {
+    path: "cloud-infrastructure",
     items: [
-      'Amazon Web Services (AWS)',
-      'Kubernetes',
-      'GitHub (CI/CD, Private Repos)'
-    ]
+      "Amazon Web Services (AWS)",
+      "Kubernetes",
+      "GitHub (CI/CD, Private Repos)",
+    ],
   },
-  'Security & Compliance': {
-    path: 'security-compliance',
-    items: [
-      'ISO 27001 Compliance',
-      'Process Street',
-      'Qualio'
-    ]
+  "Security & Compliance": {
+    path: "security-compliance",
+    items: ["ISO 27001 Compliance", "Process Street", "Qualio"],
   },
-  'Customer Insights & Feedback': {
-    path: 'customer-insights-feedback',
-    items: [
-      'Typeform',
-      'SurveyMonkey'
-    ]
-  }
+  "Customer Insights & Feedback": {
+    path: "customer-insights-feedback",
+    items: ["Typeform", "SurveyMonkey"],
+  },
 };
 
-const iconList = ['Briefcase', 'Cpu', 'MessagesSquare', 'Database', 'Contact', 'Cloud', 'Shield', 'Users'];
+const iconList = [
+  "Briefcase",
+  "Cpu",
+  "MessagesSquare",
+  "Database",
+  "Contact",
+  "Cloud",
+  "Shield",
+  "Users",
+];
 
 export default function SolutionsPage() {
   const [visibleCards, setVisibleCards] = useState([]);
@@ -88,22 +76,22 @@ export default function SolutionsPage() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const index = cardRefs.current.indexOf(entry.target);
-            setVisibleCards(prev => [...new Set([...prev, index])]);
+            setVisibleCards((prev) => [...new Set([...prev, index])]);
           }
         });
       },
       {
         root: null,
-        rootMargin: '0px',
-        threshold: 0.1
+        rootMargin: "0px",
+        threshold: 0.1,
       }
     );
 
     // Observe all cards
-    cardRefs.current.forEach(ref => {
+    cardRefs.current.forEach((ref) => {
       if (ref) observer.observe(ref);
     });
 
@@ -112,12 +100,12 @@ export default function SolutionsPage() {
       cardRefs.current.forEach((ref, index) => {
         if (ref) {
           const rect = ref.getBoundingClientRect();
-          const isVisible = (
-            rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-            rect.bottom >= 0
-          );
+          const isVisible =
+            rect.top <=
+              (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.bottom >= 0;
           if (isVisible) {
-            setVisibleCards(prev => [...new Set([...prev, index])]);
+            setVisibleCards((prev) => [...new Set([...prev, index])]);
           }
         }
       });
@@ -145,9 +133,9 @@ export default function SolutionsPage() {
         style={{
           backgroundImage:
             "url('https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1470&q=80')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
         }}
       >
         {/* Dark overlay */}
@@ -156,10 +144,11 @@ export default function SolutionsPage() {
         {/* Text content */}
         <div className="relative">
           <h1 className="text-4xl md:text-5xl font-bold text-[#c93c3c]">
-            Solutions<span className='text-white'>.</span>
+            Solutions<span className="text-white">.</span>
           </h1>
           <p className="mt-4 text-lg md:text-xl mx-auto max-w-2xl">
-            Transform your business with our cutting-edge technology solutions and automation services
+            Transform your business with our cutting-edge technology solutions
+            and automation services
           </p>
         </div>
       </div>
@@ -174,9 +163,13 @@ export default function SolutionsPage() {
             return (
               <div
                 key={category}
-                ref={el => cardRefs.current[idx] = el}
+                ref={(el) => (cardRefs.current[idx] = el)}
                 className={`group relative cursor-pointer overflow-hidden px-6 pt-10 pb-8 shadow-xl rounded-xl transform transition-all duration-700 ease-out 
-                  ${visibleCards.includes(idx) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                  ${
+                    visibleCards.includes(idx)
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-10"
+                  }`}
                 style={{ backgroundColor: colors.secondary }}
               >
                 {/* Expanding Circle */}
@@ -186,11 +179,21 @@ export default function SolutionsPage() {
                 ></span>
 
                 {/* Icon Circle */}
-                <div
-                  className="relative z-10 flex items-center justify-center w-20 h-20 mx-auto rounded-full transition-all duration-300 group-hover:brightness-110"
-                  style={{ backgroundColor: colors.primary }}
-                >
-                  <Icon className="text-white w-8 h-8" />
+                <div className="group">
+                  <div
+                    className="relative z-10 flex items-center justify-center w-20 h-20 mx-auto rounded-full transition-all duration-300"
+                    style={{
+                      backgroundColor: colors.primary,
+                    }}
+                  >
+                    <div
+                      className="absolute inset-0 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100"
+                      style={{
+                        backgroundColor: colors.secondary,
+                      }}
+                    />
+                    <Icon className="text-white w-8 h-8 relative z-10" />
+                  </div>
                 </div>
 
                 {/* Card Content */}
@@ -214,7 +217,9 @@ export default function SolutionsPage() {
                             size={16}
                             style={{ color: colors.primary }}
                           />
-                          <span className="text-sm md:text-base text-gray-300 hover:text-white transition-colors">{item}</span>
+                          <span className="text-sm md:text-base text-gray-300 hover:text-white transition-colors">
+                            {item}
+                          </span>
                         </Link>
                       </li>
                     ))}
@@ -225,7 +230,7 @@ export default function SolutionsPage() {
                 <div
                   className="absolute inset-0 z-0 transition-all duration-300 opacity-0 group-hover:opacity-100 rounded-xl"
                   style={{
-                    background: 'linear-gradient(135deg, #C93C3C, #2C3E50)',
+                    background: "linear-gradient(135deg, #C93C3C, #2C3E50)",
                   }}
                 />
               </div>
@@ -235,7 +240,7 @@ export default function SolutionsPage() {
       </div>
 
       {/* Contact Form Section */}
-      <ContactForm/>
+      <ContactForm />
     </div>
   );
 }

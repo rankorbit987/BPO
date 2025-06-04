@@ -1,37 +1,37 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import * as Icons from 'lucide-react';
-import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
+import Link from "next/link";
+import * as Icons from "lucide-react";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 
 const colors = {
-  primary: '#C93C3C',
-  secondary: '#1E293B',
-  accent: '#E74C3C',
-  lightBg: '#FFF5F5',
-  lightText: '#FFFFFF',
+  primary: "#C93C3C",
+  secondary: "#1E293B",
+  accent: "#E74C3C",
+  lightBg: "#FFF5F5",
+  lightText: "#FFFFFF",
 };
 
 const services = {
-  'Customer Support Services': {
+  "Customer Support Services": {
     description:
       "Elevate your customer experience with BPO Brigade's expert support teams. Our tailored solutions deliver 24/7 multilingual assistance, reducing response times and boosting satisfaction while cutting your operational costs.",
-    image: '/images/csr.svg',
+    image: "/images/csr.svg",
   },
-  'Digital Marketing Services': {
+  "Digital Marketing Services": {
     description:
       "Unleash your digital potential with BPO Brigade's data-driven marketing strategies. From targeted social campaigns to conversion-optimized SEO, we amplify your online presence and drive measurable business growth.",
-    image: '/images/dms.svg',
+    image: "/images/dms.svg",
   },
-  'Administrative Support': {
+  "Administrative Support": {
     description:
       "Streamline your operations with BPO Brigade's efficient administrative solutions. Our virtual assistants and CRM experts handle backend tasks with precision, freeing your team to focus on strategic priorities.",
-    image: '/images/as.svg',
+    image: "/images/as.svg",
   },
 };
 
-const iconList = ['Headset', 'Megaphone', 'Settings'];
+const iconList = ["Headset", "Megaphone", "Settings"];
 
 export default function OurServices() {
   const [visibleCards, setVisibleCards] = useState([]);
@@ -39,10 +39,10 @@ export default function OurServices() {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      entries => {
+      (entries) => {
         entries.forEach((entry, index) => {
           if (entry.isIntersecting && !visibleCards.includes(index)) {
-            setVisibleCards(prev => [...prev, index]);
+            setVisibleCards((prev) => [...prev, index]);
           }
         });
       },
@@ -61,25 +61,33 @@ export default function OurServices() {
   }, [visibleCards]);
 
   return (
-    <section className="py-20 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-10 font-montserrat bg-gradient-to-r from-[#0F172A] via-[#1E293B] to-[#0F172A]" id="services-section">
+    <section
+      className="py-20 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-10 font-montserrat bg-gradient-to-r from-[#0F172A] via-[#1E293B] to-[#0F172A]"
+      id="services-section"
+    >
       <h1 className="text-[#C93C3C] text-2xl md:text-3xl font-bold mb-4">
         Our Services<span className="text-white">.</span>
       </h1>
       <p className="text-lg text-gray-300 mt-4 max-w-3xl pb-10">
-        Tailored BPO solutions designed to optimize your operations and accelerate growth
+        Tailored BPO solutions designed to optimize your operations and
+        accelerate growth
       </p>
 
       <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 pb-16">
         {Object.entries(services).map(([category, data], idx) => {
           const Icon = Icons[iconList[idx]] || Icons.CircleHelp;
-          const categoryPath = category.toLowerCase().replace(/ /g, '-');
+          const categoryPath = category.toLowerCase().replace(/ /g, "-");
 
           return (
             <div
               key={category}
               ref={(el) => (cardRefs.current[idx] = el)}
               className={`group relative cursor-pointer overflow-hidden px-6 pt-10 pb-8 shadow-xl rounded-xl transform transition-all duration-700 ease-out 
-                ${visibleCards.includes(idx) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                ${
+                  visibleCards.includes(idx)
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-10"
+                }`}
               style={{ backgroundColor: colors.secondary }}
             >
               {/* Expanding Circle */}
@@ -89,11 +97,21 @@ export default function OurServices() {
               ></span>
 
               {/* Icon Circle */}
-              <div
-                className="relative z-10 flex items-center justify-center w-20 h-20 mx-auto rounded-full transition-all duration-300 group-hover:brightness-110"
-                style={{ backgroundColor: colors.primary }}
-              >
-                <Icon className="text-white w-8 h-8" />
+              <div className="group">
+                <div
+                  className="relative z-10 flex items-center justify-center w-20 h-20 mx-auto rounded-full transition-all duration-300"
+                  style={{
+                    backgroundColor: colors.primary,
+                  }}
+                >
+                  <div
+                    className="absolute inset-0 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100"
+                    style={{
+                      backgroundColor: colors.secondary,
+                    }}
+                  />
+                  <Icon className="text-white w-8 h-8 relative z-10" />
+                </div>
               </div>
 
               {/* Card Content */}
@@ -131,7 +149,7 @@ export default function OurServices() {
               <div
                 className="absolute inset-0 z-0 transition-all duration-300 opacity-0 group-hover:opacity-100 rounded-xl"
                 style={{
-                  background: 'linear-gradient(135deg, #C93C3C, #2C3E50)',
+                  background: "linear-gradient(135deg, #C93C3C, #2C3E50)",
                 }}
               />
             </div>

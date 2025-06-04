@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
@@ -6,10 +6,10 @@ import * as Icons from "lucide-react";
 import Image from "next/image";
 
 const colors = {
-  primary: '#C93C3C',
-  secondary: '#1E293B',
-  accent: '#E74C3C',
-  lightText: '#FFFFFF',
+  primary: "#C93C3C",
+  secondary: "#1E293B",
+  accent: "#E74C3C",
+  lightText: "#FFFFFF",
 };
 
 const solutions = {
@@ -38,7 +38,7 @@ export default function OurSolutions() {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      entries => {
+      (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const index = Number(entry.target.getAttribute("data-index"));
@@ -69,7 +69,8 @@ export default function OurSolutions() {
         Our Solutions<span className="text-white">.</span>
       </h1>
       <p className="text-lg text-gray-300 mt-4 max-w-3xl">
-        Innovative technology solutions designed to transform your business operations
+        Innovative technology solutions designed to transform your business
+        operations
       </p>
 
       <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 pb-16">
@@ -84,7 +85,7 @@ export default function OurSolutions() {
               key={category}
               data-index={idx}
               className={`solution-card group relative cursor-pointer overflow-hidden px-6 pt-10 pb-8 shadow-xl transition-all duration-700 hover:shadow-2xl rounded-xl opacity-0 translate-y-10 ${
-                isVisible ? 'opacity-100 translate-y-0' : ''
+                isVisible ? "opacity-100 translate-y-0" : ""
               }`}
               style={{ backgroundColor: colors.secondary }}
             >
@@ -95,16 +96,29 @@ export default function OurSolutions() {
               ></span>
 
               {/* Icon Circle */}
-              <div
-                className="relative z-10 flex items-center justify-center w-20 h-20 mx-auto rounded-full transition-all duration-300 group-hover:brightness-110"
-                style={{ backgroundColor: colors.primary }}
-              >
-                <Icon className="text-white w-8 h-8" />
+              <div className="group">
+                <div
+                  className="relative z-10 flex items-center justify-center w-20 h-20 mx-auto rounded-full transition-all duration-300"
+                  style={{
+                    backgroundColor: colors.primary,
+                  }}
+                >
+                  <div
+                    className="absolute inset-0 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100"
+                    style={{
+                      backgroundColor: colors.secondary,
+                    }}
+                  />
+                  <Icon className="text-white w-8 h-8 relative z-10" />
+                </div>
               </div>
 
               {/* Card Content */}
               <div className="relative z-10 pt-6 space-y-4 text-center">
-                <h3 className="text-xl font-semibold transition" style={{ color: colors.lightText }}>
+                <h3
+                  className="text-xl font-semibold transition"
+                  style={{ color: colors.lightText }}
+                >
                   {category}
                 </h3>
                 <p className="text-base transition text-gray-300 line-clamp-3">
@@ -134,7 +148,7 @@ export default function OurSolutions() {
               <div
                 className="absolute inset-0 z-0 transition-all duration-300 opacity-0 group-hover:opacity-100 rounded-xl"
                 style={{
-                  background: 'linear-gradient(135deg, #C93C3C, #2C3E50)',
+                  background: "linear-gradient(135deg, #C93C3C, #2C3E50)",
                 }}
               />
             </div>
