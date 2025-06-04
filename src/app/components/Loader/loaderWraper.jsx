@@ -8,33 +8,32 @@ export default function LoaderWrapper({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000);
-    return () => clearTimeout(timer);
-  }, []);
+    // Check if page has finished loading
+    const handleLoad = () => setLoading(false);
+    
+    // If page is already loaded when this component mounts
+    if (document.readyState === 'complete') {
+      setLoading(false);
+    } else {
+      window.addEventListener('load', handleLoad);
+    }
 
-  // Function to trigger loading
-  const triggerLoading = () => {
-    setLoading(true);
-    const timer = setTimeout(() => setLoading(false), 1000); // Shorter duration for navigation
-    return () => clearTimeout(timer);
-  };
+    // Fallback timeout in case load event doesn't fire
+    const timeout = setTimeout(() => {
+      setLoading(false);
+    }, 5000); // Maximum 5 seconds fallback
+
+    return () => {
+      window.removeEventListener('load', handleLoad);
+      clearTimeout(timeout);
+    };
+  }, []);
 
   return (
     <>
       {loading && <Loader />}
-      <div className="relative z-10">
-        {Children.map(children, child => {
-          if (typeof child.type === 'string') {
-            return child;
-          }
-          return {
-            ...child,
-            props: {
-              ...child.props,
-              triggerLoading // Pass the trigger function to children
-            }
-          };
-        })}
+      <div className={`relative z-10 ${loading ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'}`}>
+        {children}
       </div>
     </>
   );
