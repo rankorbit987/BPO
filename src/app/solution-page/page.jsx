@@ -83,32 +83,62 @@ const iconList = ['Briefcase', 'Cpu', 'MessagesSquare', 'Database', 'Contact', '
 export default function SolutionsPage() {
   const [visibleCards, setVisibleCards] = useState([]);
   const cardRefs = useRef([]);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach((entry, index) => {
-          if (entry.isIntersecting && !visibleCards.includes(index)) {
-            setVisibleCards(prev => [...prev, index]);
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const index = cardRefs.current.indexOf(entry.target);
+            setVisibleCards(prev => [...new Set([...prev, index])]);
           }
         });
       },
-      { threshold: 0.2 }
+      {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      }
     );
 
-    cardRefs.current.forEach((ref) => {
+    // Observe all cards
+    cardRefs.current.forEach(ref => {
       if (ref) observer.observe(ref);
     });
 
-    return () => {
-      cardRefs.current.forEach((ref) => {
-        if (ref) observer.unobserve(ref);
+    // Initial check for cards already in view
+    const checkInitialVisibility = () => {
+      cardRefs.current.forEach((ref, index) => {
+        if (ref) {
+          const rect = ref.getBoundingClientRect();
+          const isVisible = (
+            rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.bottom >= 0
+          );
+          if (isVisible) {
+            setVisibleCards(prev => [...new Set([...prev, index])]);
+          }
+        }
       });
     };
-  }, [visibleCards]);
+
+    // Run initial check after a small delay to ensure all elements are rendered
+    const timer = setTimeout(checkInitialVisibility, 300);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(timer);
+    };
+  }, []);
+
+  // Initialize refs array
+  useEffect(() => {
+    cardRefs.current = cardRefs.current.slice(0, Object.keys(solutions).length);
+  }, []);
 
   return (
-    <div>
+    <div ref={containerRef}>
       {/* 🖼️ Top Hero Section with Background Image */}
       <div
         className="relative py-24 px-4 sm:px-6 lg:px-8 mx-auto text-center text-white"
@@ -144,7 +174,7 @@ export default function SolutionsPage() {
             return (
               <div
                 key={category}
-                ref={(el) => (cardRefs.current[idx] = el)}
+                ref={el => cardRefs.current[idx] = el}
                 className={`group relative cursor-pointer overflow-hidden px-6 pt-10 pb-8 shadow-xl rounded-xl transform transition-all duration-700 ease-out 
                   ${visibleCards.includes(idx) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                 style={{ backgroundColor: colors.secondary }}
