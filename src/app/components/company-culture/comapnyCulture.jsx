@@ -94,7 +94,7 @@ export default function CompanyTimeline() {
       <div className="max-w-7xl mx-auto">
         <div className={`text-center mb-12 sm:mb-16 transition-all duration-500 ease-out ${inView1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
-            Life at Our Company
+            Life at <span className="text-[#c93c3c]">BPO Brigade</span> 
           </h2>
           <p className="mt-3 sm:mt-4 text-base sm:text-lg text-gray-300 max-w-3xl mx-auto">
             Discover what makes our workplace unique and vibrant
@@ -227,7 +227,7 @@ export default function CompanyTimeline() {
               <div className="lg:col-span-3">
                 <div className={`transition-all duration-500 ease-out ${inView2 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
                   <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#C93C3C]">
-                    14 August Celebrations
+                    Independance Day Celebrations
                   </h3>
                 </div>
               </div>

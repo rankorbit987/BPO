@@ -127,12 +127,11 @@ export default function SolutionsPage() {
 
   return (
     <div ref={containerRef}>
-      {/* 🖼️ Top Hero Section with Background Image */}
+      {/* 🖼️ Full Screen Hero Section */}
       <div
-        className="relative py-24 px-4 sm:px-6 lg:px-8 mx-auto text-center text-white"
+        className="relative h-screen w-full px-4 sm:px-6 lg:px-8 flex items-center justify-center text-center text-white"
         style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1470&q=80')",
+          backgroundImage: "url('https://images.unsplash.com/photo-1579389083078-4e7018379f7e?auto=format&fit=crop&w=1600&q=80')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -142,19 +141,44 @@ export default function SolutionsPage() {
         <div className="absolute inset-0 bg-black opacity-70 pointer-events-none"></div>
 
         {/* Text content */}
-        <div className="relative">
-          <h1 className="text-4xl md:text-5xl font-bold text-[#c93c3c]">
+        <div className="relative max-w-4xl mx-auto px-4">
+          <h1 className="text-4xl md:text-6xl font-bold text-[#c93c3c] mb-6">
             Solutions<span className="text-white">.</span>
           </h1>
-          <p className="mt-4 text-lg md:text-xl mx-auto max-w-2xl">
+          <p className="mt-4 text-xl md:text-2xl text-gray-200">
             Transform your business with our cutting-edge technology solutions
             and automation services
           </p>
+          
+          {/* Optional CTA Button */}
+          <div className="mt-10">
+            <Link 
+              href="#contact-form"
+              className="inline-block px-8 py-3 rounded-lg font-medium transition-all duration-300"
+              style={{
+                backgroundColor: colors.primary,
+                color: colors.lightText,
+              }}
+              onMouseEnter={(e) => e.target.style.backgroundColor = colors.accent}
+              onMouseLeave={(e) => e.target.style.backgroundColor = colors.primary}
+            >
+              Get Started
+            </Link>
+          </div>
         </div>
       </div>
 
       {/* Solutions Cards Section */}
       <div className="container mx-auto px-6 md:px-10 lg:px-10 py-16 bg-gradient-to-r from-[#0F172A] via-[#1E293B] to-[#0F172A]">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: colors.lightText }}>
+            Our Technology Solutions
+          </h2>
+          <p className="max-w-2xl mx-auto text-lg" style={{ color: colors.lightText }}>
+            Comprehensive services designed to streamline your operations and drive innovation
+          </p>
+        </div>
+        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {Object.entries(solutions).map(([category, data], idx) => {
             const Icon = Icons[iconList[idx]] || Icons.CircleHelp;
@@ -234,8 +258,12 @@ export default function SolutionsPage() {
       </div>
 
       {/* Contact Form Section */}
-      <ContactForm />
+      <div id="contact-form" className=" py-16">
+        <div className="container mx-auto px-6">
+          
+          <ContactForm />
+        </div>
+      </div>
     </div>
   );
 }
-
