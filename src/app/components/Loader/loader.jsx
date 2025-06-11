@@ -10,14 +10,14 @@ export default function Loader() {
           50% { transform: translateX(-100%) translateY(-100%); }
           75% { transform: translateY(-100%); }
         }
-
         @keyframes down {
           0%, 100% { transform: none; }
           25% { transform: translateX(100%); }
           50% { transform: translateX(100%) translateY(100%); }
           75% { transform: translateY(100%); }
         }
-      `}</style>
+      `}
+      </style>
 
       <div className="fixed inset-0 z-[9999] flex items-center justify-center"
            style={{
@@ -32,7 +32,8 @@ export default function Loader() {
               left: '50%',
               animation: 'up 2.4s cubic-bezier(0, 0, 0.24, 1.21) infinite',
               transform: 'translate(-50%, -50%)',
-            }}
+            }
+          }
           />
           {/* Block 2 */}
           <div

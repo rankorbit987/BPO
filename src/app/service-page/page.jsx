@@ -81,10 +81,8 @@ export default function ServicesPage() {
           backgroundRepeat: "no-repeat",
         }}
       >
-        {/* Dark overlay */}
         <div className="absolute inset-0 bg-black opacity-70 pointer-events-none"></div>
 
-        {/* Text content */}
         <div className="relative">
           <h1 className="text-4xl md:text-5xl font-bold text-[#c93c3c]">
             Services<span className="text-white">.</span>
@@ -122,21 +120,15 @@ export default function ServicesPage() {
                 ></span>
 
                 {/* Icon Circle */}
-                <div className="group">
+                <div
+                  className="relative z-10 flex items-center justify-center w-20 h-20 mx-auto rounded-full transition-all duration-300"
+                  style={{ backgroundColor: colors.primary }}
+                >
                   <div
-                    className="relative z-10 flex items-center justify-center w-20 h-20 mx-auto rounded-full transition-all duration-300"
-                    style={{
-                      backgroundColor: colors.primary,
-                    }}
-                  >
-                    <div
-                      className="absolute inset-0 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100"
-                      style={{
-                        backgroundColor: colors.secondary,
-                      }}
-                    />
-                    <Icon className="text-white w-8 h-8 relative z-10" />
-                  </div>
+                    className="absolute inset-0 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100"
+                    style={{ backgroundColor: colors.secondary }}
+                  />
+                  <Icon className="text-white w-8 h-8 relative z-10" />
                 </div>
 
                 {/* Card Content */}
@@ -158,7 +150,7 @@ export default function ServicesPage() {
                         >
                           <Icons.ArrowRight
                             size={16}
-                            style={{ color: colors.primary }}
+                            className="transition-colors duration-300 text-[#C93C3C] group-hover:text-[#1E293B]"
                           />
                           <span className="text-sm md:text-base text-gray-300 hover:text-white transition-colors">
                             {item}

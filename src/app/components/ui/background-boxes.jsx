@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export const BoxesCore = ({ className, ...rest }) => {
@@ -18,8 +17,10 @@ export const BoxesCore = ({ className, ...rest }) => {
     "#c4b5fd",
   ];
 
-  const getRandomColor = () => {
-    return colors[Math.floor(Math.random() * colors.length)];
+  // Generate CSS for random colors
+  const getRandomColorClass = (i, j) => {
+    const colorIndex = (i * cols.length + j) % colors.length;
+    return `hover-color-${colorIndex}`;
   };
 
   return (
@@ -33,31 +34,28 @@ export const BoxesCore = ({ className, ...rest }) => {
       )}
       {...rest}
     >
+      {/* Add dynamic styles for hover colors */}
+      <style jsx>{`
+        ${colors.map((color, index) => `
+          .hover-color-${index}:hover {
+            background-color: ${color} !important;
+          }
+        `).join('')}
+        
+        .box-cell {
+          transition: background-color 0.1s ease;
+        }
+      `}</style>
+      
       {rows.map((_, i) => (
         <div key={`row-${i}`} className="relative h-8 w-16 border-l border-slate-700">
           {cols.map((_, j) => (
-            <motion.div
-              whileHover={{
-                backgroundColor: getRandomColor(),
-                transition: { duration: 0 },
-              }}
-              transition={{ duration: 2 }}
+            <div
               key={`col-${j}`}
-              className="relative h-8 w-16 border-t border-r border-slate-700"
+              className={`box-cell relative h-8 w-16 border-t border-r border-slate-700 ${getRandomColorClass(i, j)}`}
             >
-              {j % 2 === 0 && i % 2 === 0 && (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="pointer-events-none absolute -top-[14px] -left-[22px] h-6 w-10 stroke-[1px] text-slate-700"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m6-6H6" />
-                </svg>
-              )}
-            </motion.div>
+              {/* Removed the SVG cross element */}
+            </div>
           ))}
         </div>
       ))}
