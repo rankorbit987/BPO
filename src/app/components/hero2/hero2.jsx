@@ -97,16 +97,16 @@ const Hero2 = () => {
       ref={containerRef}
       className="relative w-full min-h-[80vh] flex items-center justify-center text-white font-montserrat overflow-hidden px-4 sm:px-6 md:px-8 lg:mt-0 mt-14 lg:px-10 2xl:px-14"
     >
-      <div className="relative z-20 w-full max-w-[1400px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-2 lg:gap-12 xl:gap-16">
+      <div className="relative z-20 w-full max-w-[1400px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-0 lg:gap-12 xl:gap-16">
         {/* Hero Text */}
-        <div className="w-full lg:w-1/2 flex flex-col justify-center text-center lg:text-left px-2 lg:px-0">
-          <h1 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl xl:text-[64px] 2xl:text-[72px] font-bold leading-tight dm-serif-display-regular">
+        <div className="w-full lg:w-1/2 flex flex-col justify-center text-center lg:text-left px-2 lg:px-0 lg:pt-0 pt-10">
+          <h1 className="text-2xl xs:text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight dm-serif-display-regular">
             <span className="text-white">Transform Your Business with Our</span>{' '}
             <span className="text-[#c93c3c] bg-clip-text bg-gradient-to-r from-red-400 to-red-600">
               Expert BPO Services
             </span>
           </h1>
-          <p className="text-base sm:text-xl text-gray-200 font-medium mt-2 sm:mt-5 max-w-lg mx-auto lg:mx-0">
+          <p className="text-[14px] sm:text-xl text-gray-200 font-medium mt-2 sm:mt-5 max-w-lg mx-auto lg:mx-0">
             Comprehensive digital solutions for modern business challenges.
           </p>
           <div className="pointer-events-auto flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-8 justify-center lg:justify-start ">
@@ -118,7 +118,7 @@ const Hero2 = () => {
               className="cursor-pointer relative overflow-hidden rounded-3xl bg-[#c93c3c] text-white px-5 sm:px-6 py-2 sm:py-3 font-semibold group transition-transform duration-300 hover:scale-105 shadow-lg"
             >
               <span className="absolute inset-0 bg-white transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 z-0"></span>
-              <span className="relative text-white group-hover:text-[#c93c3c] transition-colors duration-200 z-10 text-base lg:text-lg">
+              <span className="relative text-white group-hover:text-[#c93c3c] transition-colors duration-200 z-10 text-[14px] lg:text-lg">
                 Explore Services
               </span>
             </button>
@@ -130,7 +130,7 @@ const Hero2 = () => {
               }}
             >
               <span className="absolute inset-0 bg-[#C93C3C] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 z-0 "></span>
-              <span className="relative text-[#C93C3C] group-hover:text-white transition-colors duration-200 z-10 text-base lg:text-lg">
+              <span className="relative text-[#C93C3C] group-hover:text-white transition-colors duration-200 z-10 text-[14px] lg:text-lg">
                 Request Free Demo
               </span>
             </button>
