@@ -23,7 +23,7 @@ const Home = () => {
     <WhyUs/>
     <CompanyTimeline/>
     <Testimonials/>
-    <ContactForm/> 
+    <ContactForm/>
     
     
     </>
